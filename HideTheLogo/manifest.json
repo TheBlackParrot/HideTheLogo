@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
+  "id": "HideTheLogo",
+  "name": "HideTheLogo",
+  "author": "TheBlackParrot",
+  "version": "1.0.0",
+  "description": "Hide the Beat Saber logo",
+  "gameVersion": "1.40.0",
+  "dependsOn": {
+    "BSIPA": "^4.3.5",
+    "BeatSaberMarkupLanguage": "^1.12.5",
+    "SiraUtil": "^3.1.14"
+  }
+}
