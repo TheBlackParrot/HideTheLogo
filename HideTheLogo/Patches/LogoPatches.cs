@@ -32,6 +32,7 @@ namespace HideTheLogo.Patches
                 _thunderMenuEnvironment = __instance.transform.Find("ThunderMenuEnvironment");
             }
 
+            // doing it this way to get around the MenuSelector mod re-activating these. just ensuring we run *last*
             UnityMainThreadTaskScheduler.Factory.StartNew(async () =>
             {
                 Plugin.Log.Info("yeet");
