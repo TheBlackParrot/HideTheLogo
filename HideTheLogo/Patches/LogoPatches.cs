@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using HarmonyLib;
 using IPA.Utilities.Async;
+using SiraUtil.Converters;
 using UnityEngine;
 
 namespace HideTheLogo.Patches
@@ -10,6 +12,7 @@ namespace HideTheLogo.Patches
     {
         private static Transform _defaultMenuEnvironment;
         private static Transform _thunderMenuEnvironment;
+        private static bool GameVersionHasMetallica => IPA.Utilities.UnityGame.GameVersion.SemverValue?.Major == 1 && IPA.Utilities.UnityGame.GameVersion.SemverValue?.Minor == 40;
 
         private static async Task WaitABit()
         {
@@ -27,7 +30,7 @@ namespace HideTheLogo.Patches
             {
                 _defaultMenuEnvironment = __instance.transform.Find("DefaultMenuEnvironment");
             }
-            if (_thunderMenuEnvironment == null)
+            if (_thunderMenuEnvironment == null && GameVersionHasMetallica)
             {
                 _thunderMenuEnvironment = __instance.transform.Find("ThunderMenuEnvironment");
             }
@@ -43,8 +46,11 @@ namespace HideTheLogo.Patches
                 _defaultMenuEnvironment.Find("GlowLines").gameObject.SetActive(false);
                 _defaultMenuEnvironment.Find("GlowLines (1)").gameObject.SetActive(false);
 
-                _thunderMenuEnvironment.Find("MetallicaLogo").gameObject.SetActive(false);
-                _thunderMenuEnvironment.Find("BS_Logo").gameObject.SetActive(false);
+                if (GameVersionHasMetallica)
+                {
+                    _thunderMenuEnvironment.Find("MetallicaLogo").gameObject.SetActive(false);
+                    _thunderMenuEnvironment.Find("BS_Logo").gameObject.SetActive(false);
+                }
             });
         }
     }

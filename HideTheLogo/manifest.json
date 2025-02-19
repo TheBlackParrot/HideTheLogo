@@ -3,12 +3,11 @@
   "id": "HideTheLogo",
   "name": "HideTheLogo",
   "author": "TheBlackParrot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hide the Beat Saber logo",
   "gameVersion": "1.40.0",
   "dependsOn": {
-    "BSIPA": "^4.3.5",
-    "BeatSaberMarkupLanguage": "^1.12.5",
-    "SiraUtil": "^3.1.14"
+    "BSIPA": "^4.2.2",
+    "SiraUtil": "^3.1.2"
   }
 }
