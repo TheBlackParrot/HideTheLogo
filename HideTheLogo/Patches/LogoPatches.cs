@@ -12,7 +12,11 @@ namespace HideTheLogo.Patches
     {
         private static Transform _defaultMenuEnvironment;
         private static Transform _thunderMenuEnvironment;
-        private static bool GameVersionHasMetallica => IPA.Utilities.UnityGame.GameVersion.SemverValue?.Major == 1 && IPA.Utilities.UnityGame.GameVersion.SemverValue?.Minor == 40;
+        
+        // Metallica environment only existed between 1.40.0 and 1.40.2, it was removed in 1.40.3
+        private static bool GameVersionHasMetallica => IPA.Utilities.UnityGame.GameVersion.SemverValue?.Major == 1 &&
+                                                       IPA.Utilities.UnityGame.GameVersion.SemverValue?.Minor == 40 &&
+                                                       IPA.Utilities.UnityGame.GameVersion.SemverValue?.Patch <= 2;
 
         private static async Task WaitABit()
         {
