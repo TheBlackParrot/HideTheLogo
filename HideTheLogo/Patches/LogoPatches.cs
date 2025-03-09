@@ -17,12 +17,6 @@ namespace HideTheLogo.Patches
         private static bool GameVersionHasMetallica => IPA.Utilities.UnityGame.GameVersion.SemverValue?.Major == 1 &&
                                                        IPA.Utilities.UnityGame.GameVersion.SemverValue?.Minor == 40 &&
                                                        IPA.Utilities.UnityGame.GameVersion.SemverValue?.Patch <= 2;
-
-        private static async Task WaitABit()
-        {
-            // lazy. it works. w/e
-            await Task.Delay(1);
-        }
         
         // ReSharper disable once InconsistentNaming
         [HarmonyPatch(typeof(MenuEnvironmentManager), "Start")]
@@ -43,8 +37,8 @@ namespace HideTheLogo.Patches
             UnityMainThreadTaskScheduler.Factory.StartNew(async () =>
             {
                 Plugin.Log.Info("yeet");
-                
-                await WaitABit();
+
+                await Task.Yield();
                 
                 _defaultMenuEnvironment.Find("Logo").gameObject.SetActive(false);
                 _defaultMenuEnvironment.Find("GlowLines").gameObject.SetActive(false);
